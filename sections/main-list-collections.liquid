@@ -4,7 +4,7 @@
 {% endcomment %}
 
 <div class="list-collections section-{{ section.id }}-padding">
-  <div class="page-width">
+  <div class="container">
     <div class="list-collections__header">
       {%- if section.settings.heading != blank -%}
         <h1 class="list-collections__title">{{ section.settings.heading }}</h1>
@@ -17,10 +17,10 @@
       {%- endif -%}
     </div>
 
-    {%- if collections.size > 0 -%}
+    {%- assign collections_to_display = collections | where: 'handle', '!=', 'frontpage' -%}
+    {%- if collections_to_display.size > 0 -%}
         <ul class="collections-grid" role="list">
-          {%- for collection in collections limit: section.settings.collections_to_show -%}
-            {%- unless collection.handle == 'frontpage' -%}
+          {%- for collection in collections_to_display limit: section.settings.collections_to_show -%}
               <li class="grid__item">
                 <div class="collection-card">
                   <a href="{{ collection.url }}" class="collection-card__link">
@@ -73,18 +73,78 @@
                   </a>
                 </div>
               </li>
-            {%- endunless -%}
           {%- endfor -%}
         </ul>
     {%- else -%}
-      <div class="collections-empty">
-        <div class="empty-state">
-          <div class="empty-icon">🕯️</div>
-          <h2>No Collections Found</h2>
-          <p>We're currently setting up our collection pages. Check back soon for our curated candle collections.</p>
-          <a href="/" class="button button--primary">Return Home</a>
-        </div>
-      </div>
+        <!-- Demo collections for when store has no collections yet -->
+        <ul class="collections-grid" role="list">
+          <li class="grid__item">
+            <div class="collection-card">
+              <a href="/collections/signature-collection" class="collection-card__link">
+                <div class="collection-card__image">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2017/02/05/12/31/candle-2042085_960_720.jpg"
+                    alt="Signature Collection"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                  <div class="collection-card__overlay">
+                    <a href="/collections/signature-collection" class="btn btn-secondary">View Collection</a>
+                  </div>
+                </div>
+                <div class="collection-card__info">
+                  <h3 class="collection-card__title">Signature Collection</h3>
+                  <p class="collection-card__count">8 Products</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="grid__item">
+            <div class="collection-card">
+              <a href="/collections/seasonal-scents" class="collection-card__link">
+                <div class="collection-card__image">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2016/11/29/12/30/candle-1869640_960_720.jpg"
+                    alt="Seasonal Scents"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                  <div class="collection-card__overlay">
+                    <a href="/collections/seasonal-scents" class="btn btn-secondary">View Collection</a>
+                  </div>
+                </div>
+                <div class="collection-card__info">
+                  <h3 class="collection-card__title">Seasonal Scents</h3>
+                  <p class="collection-card__count">6 Products</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="grid__item">
+            <div class="collection-card">
+              <a href="/collections/luxury-candles" class="collection-card__link">
+                <div class="collection-card__image">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2018/11/03/22/21/candles-3793227_960_720.jpg"
+                    alt="Luxury Candles"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                  <div class="collection-card__overlay">
+                    <a href="/collections/luxury-candles" class="btn btn-secondary">View Collection</a>
+                  </div>
+                </div>
+                <div class="collection-card__info">
+                  <h3 class="collection-card__title">Luxury Candles</h3>
+                  <p class="collection-card__count">12 Products</p>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
     {%- endif -%}
   </div>
 </div>
@@ -196,38 +256,38 @@
 
 <style>
 .section-{{ section.id }}-padding {
-  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-}
-
-@media screen and (min-width: 750px) {
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-  }
+  padding: 5rem 0;
 }
 
 .list-collections {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(30, 58, 43, 0.7));
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .list-collections__header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .list-collections__title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
-  font-weight: 600;
-  color: #D4AF37;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
   .list-collections__title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 
@@ -237,27 +297,28 @@
   color: #cccccc;
   line-height: 1.6;
   max-width: 600px;
-  margin: 0 auto;
-}
-
-.collections-grid {
-  margin-top: 2rem;
+  margin: 0 auto 3rem auto;
 }
 
 .collections-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin: 0 0 3rem 0;
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
   .collections-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

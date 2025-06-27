@@ -12,15 +12,15 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "heading": "Product Collections",
+        "heading": "PRODUCT COLLECTIONS",
         "description": "Discover our curated collection of luxury candles",
-        "collections_to_show": 8,
+        "collections_to_show": 9,
         "columns_desktop": 3,
         "columns_mobile": "1",
         "image_ratio": "square",
         "show_collection_count": true,
-        "padding_top": 60,
-        "padding_bottom": 60
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     }
   },
