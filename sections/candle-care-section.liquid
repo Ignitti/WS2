@@ -1,6 +1,171 @@
+{% comment %}
+  Candle Care & Safety Information Section
+{% endcomment %}
+
+<div class="candle-care-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="candle-care-content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="candle-care-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      
+      <div class="candle-care-grid">
+        <div class="care-item">
+          <div class="care-icon">🕯️</div>
+          <h4>First Burn</h4>
+          <p>Allow candle to burn for 2-3 hours to create an even melt pool across the entire surface.</p>
+        </div>
+        
+        <div class="care-item">
+          <div class="care-icon">✂️</div>
+          <h4>Wick Trimming</h4>
+          <p>Trim wick to 1/4" before each use to prevent smoking and ensure optimal burn.</p>
+        </div>
+        
+        <div class="care-item">
+          <div class="care-icon">⏰</div>
+          <h4>Burn Time</h4>
+          <p>Never burn for more than 4 hours at a time. Allow to cool completely before relighting.</p>
+        </div>
+        
+        <div class="care-item">
+          <div class="care-icon">🛡️</div>
+          <h4>Safety</h4>
+          <p>Keep away from drafts, children, and pets. Never leave burning unattended.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Candle Care Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Candle Care & Safety",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ]
+}
 {% endschema %}
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+.candle-care-section {
+  background: rgba(30, 58, 43, 0.3);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.candle-care-content {
+  text-align: center;
+}
+
+.candle-care-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #D4AF37;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.candle-care-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.care-item {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.care-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.care-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.care-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #D4AF37;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.care-item p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .candle-care-heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .candle-care-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .care-item {
+    padding: 1.5rem 1rem;
+  }
+}
+</style>
