@@ -1,0 +1,332 @@
+<section class="subscription-tiers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.heading | default: "IRepeat - Never Run Out" }}</h2>
+      <p class="section-description">
+        {{ section.settings.description | default: "Choose your perfect subscription and ensure your space always carries the scent of sophistication." }}
+      </p>
+    </div>
+    
+    <div class="tiers-grid">
+      <!-- The Enthusiast -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <h3 class="tier-name">The Enthusiast</h3>
+          <div class="tier-price">
+            <span class="price">$35</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <div class="tier-features">
+          <ul>
+            <li>1 Premium Candle</li>
+            <li>Free Shipping</li>
+            <li>Skip or Cancel Anytime</li>
+            <li>Member Exclusive Scents</li>
+          </ul>
+        </div>
+        <button class="btn btn-secondary tier-btn">Choose Plan</button>
+      </div>
+      
+      <!-- The Connoisseur (Most Popular) -->
+      <div class="tier-card tier-popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="tier-header">
+          <h3 class="tier-name">The Connoisseur</h3>
+          <div class="tier-price">
+            <span class="price">$65</span>
+            <span class="period">/month</span>
+          </div>
+          <div class="tier-savings">Save 15%</div>
+        </div>
+        <div class="tier-features">
+          <ul>
+            <li>2 Premium Candles</li>
+            <li>Free Priority Shipping</li>
+            <li>Skip or Cancel Anytime</li>
+            <li>Member Exclusive Scents</li>
+            <li>Quarterly Surprise Gift</li>
+            <li>Early Access to New Releases</li>
+          </ul>
+        </div>
+        <button class="btn btn-primary tier-btn">Choose Plan</button>
+      </div>
+      
+      <!-- The Collector -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <h3 class="tier-name">The Collector</h3>
+          <div class="tier-price">
+            <span class="price">$120</span>
+            <span class="period">/month</span>
+          </div>
+          <div class="tier-savings">Save 25%</div>
+        </div>
+        <div class="tier-features">
+          <ul>
+            <li>4 Premium Candles</li>
+            <li>Free Express Shipping</li>
+            <li>Skip or Cancel Anytime</li>
+            <li>Member Exclusive Scents</li>
+            <li>Monthly Surprise Gift</li>
+            <li>Early Access to New Releases</li>
+            <li>Personal Fragrance Consultant</li>
+            <li>Limited Edition Collectibles</li>
+          </ul>
+        </div>
+        <button class="btn btn-secondary tier-btn">Choose Plan</button>
+      </div>
+    </div>
+    
+    <div class="subscription-benefits">
+      <h3>Why Subscribe?</h3>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">🚀</div>
+          <h4>Never Run Out</h4>
+          <p>Automatic deliveries ensure your home always smells exceptional</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">💰</div>
+          <h4>Exclusive Savings</h4>
+          <p>Save up to 25% compared to one-time purchases</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎁</div>
+          <h4>Surprise Gifts</h4>
+          <p>Regular surprises and early access to new collections</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">⚡</div>
+          <h4>Full Control</h4>
+          <p>Skip, pause, or cancel your subscription anytime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .subscription-tiers {
+    background-color: #1a1a1a;
+    padding: 5rem 0;
+    color: white;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .subscription-tiers .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .subscription-tiers .section-description {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .tier-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .tier-popular {
+    border-color: #D4AF37;
+    background: rgba(212, 175, 55, 0.1);
+    transform: scale(1.05);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #D4AF37;
+    color: #1a1a1a;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tier-header {
+    margin-bottom: 2rem;
+  }
+
+  .tier-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tier-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+
+  .period {
+    font-size: 1.2rem;
+    opacity: 0.7;
+  }
+
+  .tier-savings {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .tier-features {
+    margin-bottom: 2rem;
+  }
+
+  .tier-features ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tier-features li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .tier-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #D4AF37;
+    font-weight: bold;
+  }
+
+  .tier-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .subscription-benefits {
+    text-align: center;
+  }
+
+  .subscription-benefits h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .benefit-item {
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #D4AF37;
+  }
+
+  .benefit-item p {
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .subscription-tiers .section-title {
+      font-size: 2rem;
+    }
+    
+    .tier-popular {
+      transform: none;
+    }
+    
+    .tiers-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Subscription Tiers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "IRepeat - Never Run Out"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Choose your perfect subscription and ensure your space always carries the scent of sophistication."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription Tiers"
+    }
+  ]
+}
+{% endschema %}

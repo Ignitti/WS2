@@ -1,0 +1,226 @@
+<section class="best-sellers">
+  <div class="container">
+    <h2 class="section-title">{{ section.settings.heading | default: "Best Sellers" }}</h2>
+    <div class="products-grid">
+      {% for product in collections['best-sellers'].products limit: 3 %}
+        <div class="product-card" data-aos="fade-up" data-aos-delay="{{ forloop.index0 | times: 100 }}">
+          <div class="product-image">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy">
+            {% else %}
+              <img src="https://pixabay.com/get/gfad2136b58a455806a11e97ce302661b7de94f94d4b7ec33eda41446ecce314e3939afc8419e80cc8cde7f511d921dc622987f04da41d285f77b34433b2740c7_1280.jpg" alt="Luxury Candle" loading="lazy">
+            {% endif %}
+            <div class="product-overlay">
+              <a href="{{ product.url }}" class="btn btn-secondary">View Details</a>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title | default: "Executive Black" }}</h3>
+            <p class="product-price">{{ product.price | money | default: "$45.00" }}</p>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(127)</span>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <!-- Fallback products when collection is empty -->
+        {% for i in (1..3) %}
+          <div class="product-card" data-aos="fade-up" data-aos-delay="{{ forloop.index0 | times: 100 }}">
+            <div class="product-image">
+              {% case i %}
+                {% when 1 %}
+                  <img src="https://pixabay.com/get/gfad2136b58a455806a11e97ce302661b7de94f94d4b7ec33eda41446ecce314e3939afc8419e80cc8cde7f511d921dc622987f04da41d285f77b34433b2740c7_1280.jpg" alt="Executive Black Candle" loading="lazy">
+                {% when 2 %}
+                  <img src="https://pixabay.com/get/g6765cbb170ac3a269ec888f4ce2f3f0dac735533a491534e5c188cdf6b23c892e2c55381898f4cfbe1ac9d137a6fd9c4be6a2cf93b1403fdb5b35bbee3f8f0c6_1280.jpg" alt="Midnight Cedar Candle" loading="lazy">
+                {% when 3 %}
+                  <img src="https://pixabay.com/get/g2a460eb59f692f551041140379dee455f74b11841d9c055c6915541e4eeec5ba59bde92e7e3225d748c68cc944bea58c2d3622dba932f5e2c3636b557e072be4_1280.jpg" alt="Bourbon Vanilla Candle" loading="lazy">
+              {% endcase %}
+              <div class="product-overlay">
+                <a href="/products/product-{{ i }}" class="btn btn-secondary">View Details</a>
+              </div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">
+                {% case i %}
+                  {% when 1 %}Executive Black
+                  {% when 2 %}Midnight Cedar
+                  {% when 3 %}Bourbon Vanilla
+                {% endcase %}
+              </h3>
+              <p class="product-price">
+                {% case i %}
+                  {% when 1 %}$45.00
+                  {% when 2 %}$52.00
+                  {% when 3 %}$48.00
+                {% endcase %}
+              </p>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">({{ 120 | plus: i | times: 3 }})</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="section-cta">
+      <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn btn-primary">
+        {{ section.settings.button_text | default: "View All Products" }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .best-sellers {
+    background-color: #1a1a1a;
+    padding: 5rem 0;
+    color: white;
+  }
+
+  .best-sellers .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .product-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.1);
+  }
+
+  .product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card:hover .product-overlay {
+    opacity: 1;
+  }
+
+  .product-info {
+    padding: 1.5rem;
+  }
+
+  .product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stars {
+    color: #D4AF37;
+    font-size: 0.9rem;
+  }
+
+  .rating-count {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .section-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .best-sellers .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View All Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers"
+    }
+  ]
+}
+{% endschema %}

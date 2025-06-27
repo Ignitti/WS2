@@ -1,0 +1,137 @@
+<section class="brand-intro">
+  <div class="container">
+    <div class="brand-intro-content">
+      <div class="brand-intro-text">
+        <h2 class="section-title">{{ section.settings.heading | default: "Crafted for the Discerning Man" }}</h2>
+        <p class="section-description">
+          {{ section.settings.description | default: "At Ignitti, we believe that luxury isn't just about what you own—it's about how you live. Our candles are meticulously crafted with the finest ingredients, designed to elevate your space and your mindset. Each flame tells a story of sophistication, quality, and masculine elegance." }}
+        </p>
+        <div class="brand-values">
+          <div class="value-item">
+            <h3>Premium Materials</h3>
+            <p>Only the finest waxes and fragrances</p>
+          </div>
+          <div class="value-item">
+            <h3>Masculine Scents</h3>
+            <p>Curated for the modern gentleman</p>
+          </div>
+          <div class="value-item">
+            <h3>Artisan Crafted</h3>
+            <p>Hand-poured with attention to detail</p>
+          </div>
+        </div>
+      </div>
+      <div class="brand-intro-image">
+        <img src="https://pixabay.com/get/g0f8b012115de19234bd795aa81d985ce238e883dfae59824abcea5a19ccbf6aecc9e07775141aba9920651a6ae1cbbd40021f6e8ccf64f2b0e984de5e15c0a01_1280.jpg" alt="Luxury Interior" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-intro {
+    background-color: #1E3A2B;
+    padding: 5rem 0;
+    color: white;
+  }
+
+  .brand-intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .brand-intro-text {
+    animation: fadeInLeft 0.8s ease-out;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+
+  .brand-values {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .value-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .value-item p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  .brand-intro-image {
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeInRight 0.8s ease-out;
+  }
+
+  .brand-intro-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .brand-intro-image:hover img {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .brand-intro-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Intro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Crafted for the Discerning Man"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "At Ignitti, we believe that luxury isn't just about what you own—it's about how you live..."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Intro"
+    }
+  ]
+}
+{% endschema %}

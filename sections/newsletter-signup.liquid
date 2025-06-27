@@ -1,0 +1,187 @@
+<section class="newsletter-signup">
+  <div class="container">
+    <div class="newsletter-content">
+      <h2 class="section-title">{{ section.settings.heading | default: "Join the Elite" }}</h2>
+      <p class="section-description">
+        {{ section.settings.description | default: "Be the first to discover new fragrances, exclusive releases, and insider stories from the world of Ignitti." }}
+      </p>
+      
+      {% form 'customer', class: 'newsletter-form' %}
+        {% if form.posted_successfully? %}
+          <div class="success-message">
+            <p>Thank you for subscribing! Welcome to the Ignitti family.</p>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <input type="email" 
+                   name="contact[email]" 
+                   id="newsletter-email" 
+                   placeholder="Enter your email address"
+                   required
+                   class="newsletter-input">
+            <button type="submit" class="btn btn-primary newsletter-btn">
+              {{ section.settings.button_text | default: "Subscribe" }}
+            </button>
+          </div>
+          {% if form.errors %}
+            <div class="error-message">
+              <p>{{ form.errors | first }}</p>
+            </div>
+          {% endif %}
+        {% endif %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+      {% endform %}
+      
+      <p class="privacy-notice">
+        By subscribing, you agree to receive marketing emails from Ignitti. 
+        You can unsubscribe at any time.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter-signup {
+    background: linear-gradient(135deg, #1E3A2B 0%, #1a1a1a 100%);
+    padding: 4rem 0;
+    color: white;
+    text-align: center;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .newsletter-signup .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .newsletter-signup .section-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+
+  .newsletter-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: #D4AF37;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  }
+
+  .newsletter-btn {
+    padding: 0.875rem 2rem;
+    white-space: nowrap;
+  }
+
+  .success-message {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid #4CAF50;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-message p {
+    margin: 0;
+    color: #4CAF50;
+  }
+
+  .error-message {
+    background: rgba(244, 67, 54, 0.2);
+    border: 1px solid #f44336;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .error-message p {
+    margin: 0;
+    color: #f44336;
+  }
+
+  .privacy-notice {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .newsletter-signup .section-title {
+      font-size: 2rem;
+    }
+    
+    .form-group {
+      flex-direction: column;
+    }
+    
+    .newsletter-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter Signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Elite"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Be the first to discover new fragrances, exclusive releases, and insider stories from the world of Ignitti."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Signup"
+    }
+  ]
+}
+{% endschema %}
