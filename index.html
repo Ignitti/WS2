@@ -478,10 +478,19 @@
         // Mobile menu toggle
         if (mobileMenuToggle && mobileNavOverlay) {
           mobileMenuToggle.addEventListener('click', function() {
-            mobileMenuToggle.classList.toggle('active');
-            mobileNavOverlay.style.display = mobileNavOverlay.style.display === 'block' ? 'none' : 'block';
-            document.body.style.overflow = mobileNavOverlay.style.display === 'block' ? 'hidden' : '';
+            const isActive = mobileNavOverlay.classList.contains('active');
+            if (isActive) {
+              closeMobileMenu();
+            } else {
+              openMobileMenu();
+            }
           });
+
+          function openMobileMenu() {
+            mobileNavOverlay.classList.add('active');
+            mobileMenuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
 
           // Close mobile menu when clicking overlay
           mobileNavOverlay.addEventListener('click', function(e) {
@@ -502,12 +511,13 @@
         // Search functionality
         if (searchToggle && searchOverlay) {
           searchToggle.addEventListener('click', function() {
-            searchOverlay.style.display = 'flex';
+            console.log('Search button clicked');
+            searchOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
             
             const searchInput = searchOverlay.querySelector('.search-input');
             if (searchInput) {
-              setTimeout(() => searchInput.focus(), 100);
+              setTimeout(() => searchInput.focus(), 300);
             }
           });
         }
@@ -535,14 +545,14 @@
         function closeMobileMenu() {
           if (mobileMenuToggle && mobileNavOverlay) {
             mobileMenuToggle.classList.remove('active');
-            mobileNavOverlay.style.display = 'none';
+            mobileNavOverlay.classList.remove('active');
             document.body.style.overflow = '';
           }
         }
 
         function closeSearch() {
           if (searchOverlay) {
-            searchOverlay.style.display = 'none';
+            searchOverlay.classList.remove('active');
             document.body.style.overflow = '';
           }
         }
