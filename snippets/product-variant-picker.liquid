@@ -1,0 +1,204 @@
+{% comment %}
+  Product Variant Picker
+  Displays variant options for products
+{% endcomment %}
+
+{%- unless product.has_only_default_variant -%}
+  <div class="product-form__variant-picker">
+    {%- for option in product.options_with_values -%}
+      <fieldset class="variant-input-wrap">
+        <legend class="variant-input-legend">
+          {{ option.name }}:
+          <span class="variant-input-selected">{{ option.selected_value }}</span>
+        </legend>
+        
+        {%- if option.name == 'Color' or option.name == 'Colour' -%}
+          <div class="variant-input variant-input--color">
+            {%- for value in option.values -%}
+              <input
+                type="radio"
+                id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                name="options[{{ option.name | escape }}]"
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                class="variant-input__radio"
+              >
+              <label
+                for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                class="variant-input__label variant-input__label--color"
+                style="background-color: {{ value | downcase | replace: ' ', '' }}"
+                title="{{ value | escape }}"
+              >
+                <span class="visually-hidden">{{ value }}</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        {%- elsif option.name == 'Size' -%}
+          <div class="variant-input variant-input--size">
+            {%- for value in option.values -%}
+              <input
+                type="radio"
+                id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                name="options[{{ option.name | escape }}]"
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                class="variant-input__radio"
+              >
+              <label
+                for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                class="variant-input__label variant-input__label--size"
+              >
+                {{ value }}
+              </label>
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <div class="variant-input variant-input--dropdown">
+            <select
+              id="{{ section.id }}-{{ option.position }}"
+              name="options[{{ option.name | escape }}]"
+              class="variant-input__select"
+            >
+              {%- for value in option.values -%}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}selected{% endif %}
+                >
+                  {{ value }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+      </fieldset>
+    {%- endfor -%}
+  </div>
+{%- endunless -%}
+
+<style>
+.product-form__variant-picker {
+  margin-bottom: 2rem;
+}
+
+.variant-input-wrap {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.variant-input-legend {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.variant-input-selected {
+  color: #D4AF37;
+  font-weight: 700;
+}
+
+.variant-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.variant-input__radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.variant-input__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.variant-input__label:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.variant-input__radio:checked + .variant-input__label {
+  border-color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+}
+
+.variant-input__label--color {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  position: relative;
+}
+
+.variant-input__label--color::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: border-color 0.3s ease;
+}
+
+.variant-input__radio:checked + .variant-input__label--color::after {
+  border-color: #D4AF37;
+}
+
+.variant-input__label--size {
+  min-width: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.variant-input__select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.variant-input__select:focus {
+  border-color: #D4AF37;
+  outline: none;
+}
+
+.variant-input__select option {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+</style>
