@@ -94,7 +94,9 @@ Ignitti is a luxury candle e-commerce website built as a custom Shopify theme. T
 - **Caching**: Shopify's built-in caching mechanisms
 
 ## Changelog
-- June 27, 2025. Initial setup
+- June 27, 2025: Initial setup
+- June 27, 2025: Completed multi-page website structure with proper sectioning and navigation
+- June 27, 2025: Enhanced UI with responsive design and luxury aesthetic implementation
 
 ## User Preferences
 

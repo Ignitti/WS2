@@ -1,0 +1,556 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#1a1a1a">
+    
+    <title>Collections - IGNITTI</title>
+    <meta name="description" content="Explore our curated collections of luxury candles, each designed for different moods and occasions.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/base.css">
+    
+    <style>
+      body {
+        padding-top: 80px !important;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      
+      .mobile-nav-overlay {
+        display: none;
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        gap: 4px;
+      }
+      
+      .page-header {
+        background: linear-gradient(135deg, #1a1a1a 0%, #1E3A2B 100%);
+        padding: 5rem 0 3rem;
+        text-align: center;
+        color: white;
+      }
+      
+      .page-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 1rem;
+      }
+      
+      .page-description {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .collections-section {
+        padding: 5rem 0;
+        background: #1E3A2B;
+        color: white;
+      }
+      
+      .collections-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+      
+      .collection-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        height: 400px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .collection-card:hover {
+        transform: translateY(-10px);
+      }
+      
+      .collection-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .collection-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      
+      .collection-card:hover .collection-image img {
+        transform: scale(1.1);
+      }
+      
+      .collection-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(26, 26, 26, 0.3) 0%,
+          rgba(26, 26, 26, 0.8) 100%
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 2rem;
+        transition: background 0.3s ease;
+      }
+      
+      .collection-card:hover .collection-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(26, 26, 26, 0.5) 0%,
+          rgba(26, 26, 26, 0.9) 100%
+        );
+      }
+      
+      .collection-info {
+        width: 100%;
+        text-align: center;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+      }
+      
+      .collection-card:hover .collection-info {
+        transform: translateY(0);
+      }
+      
+      .collection-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      
+      .collection-description {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+      
+      .collection-count {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 1rem;
+        color: #D4AF37;
+      }
+      
+      .collection-info .btn {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease 0.1s;
+      }
+      
+      .collection-card:hover .collection-info .btn {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .featured-collection {
+        grid-column: span 2;
+        height: 500px;
+      }
+      
+      .featured-collection .collection-title {
+        font-size: 2.5rem;
+      }
+      
+      .featured-collection .collection-description {
+        font-size: 1.2rem;
+        max-width: 400px;
+        margin: 0 auto 1.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        body {
+          padding-top: 70px !important;
+        }
+        
+        .mobile-menu-toggle {
+          display: flex !important;
+        }
+        
+        .header-nav {
+          display: none !important;
+        }
+        
+        .page-title {
+          font-size: 2rem;
+        }
+        
+        .collections-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .featured-collection {
+          grid-column: span 1;
+          height: 400px;
+        }
+        
+        .featured-collection .collection-title {
+          font-size: 2rem;
+        }
+        
+        .featured-collection .collection-description {
+          font-size: 1rem;
+        }
+        
+        .collection-card {
+          height: 300px;
+        }
+        
+        .collection-overlay {
+          padding: 1.5rem;
+        }
+        
+        .collection-info .btn {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <div class="header-content">
+          <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          
+          <div class="header-logo">
+            <a href="index.html" class="logo-link">
+              <span class="logo-text">IGNITTI</span>
+            </a>
+          </div>
+          
+          <nav class="header-nav" role="navigation">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="shop.html" class="nav-link">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a href="collections.html" class="nav-link active">Collections</a>
+              </li>
+              <li class="nav-item">
+                <a href="irepeat.html" class="nav-link">IRepeat</a>
+              </li>
+              <li class="nav-item">
+                <a href="about.html" class="nav-link">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          
+          <div class="header-actions">
+            <button class="header-action search-toggle" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+            <a href="#" class="header-action" aria-label="Account">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </a>
+            <a href="#" class="header-action cart-link" aria-label="Cart">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"></path>
+                <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"></path>
+                <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"></path>
+              </svg>
+              <span class="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title">Our Collections</h1>
+          <p class="page-description">
+            Discover our curated collections of premium candles, each designed for different moods and occasions that define the modern gentleman's lifestyle.
+          </p>
+        </div>
+      </section>
+
+      <!-- Collections Grid -->
+      <section class="collections-section">
+        <div class="container">
+          <div class="collections-grid">
+            <!-- Featured Collection -->
+            <div class="collection-card featured-collection">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/gfad2136b58a455806a11e97ce302661b7de94f94d4b7ec33eda41446ecce314e3939afc8419e80cc8cde7f511d921dc622987f04da41d285f77b34433b2740c7_1280.jpg" alt="The Executive Collection">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">The Executive Collection</h3>
+                  <p class="collection-description">
+                    Sophisticated scents designed for the boardroom and beyond. Rich, powerful fragrances that command respect and exude confidence.
+                  </p>
+                  <p class="collection-count">8 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collection 2 -->
+            <div class="collection-card">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/g6765cbb170ac3a269ec888f4ce2f3f0dac735533a491534e5c188cdf6b23c892e2c55381898f4cfbe1ac9d137a6fd9c4be6a2cf93b1403fdb5b35bbee3f8f0c6_1280.jpg" alt="Midnight Series">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">Midnight Series</h3>
+                  <p class="collection-description">
+                    Deep, mysterious fragrances perfect for evening relaxation and intimate settings.
+                  </p>
+                  <p class="collection-count">6 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collection 3 -->
+            <div class="collection-card">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/g2a460eb59f692f551041140379dee455f74b11841d9c055c6915541e4eeec5ba59bde92e7e3225d748c68cc944bea58c2d3622dba932f5e2c3636b557e072be4_1280.jpg" alt="Vintage Leather">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">Vintage Leather</h3>
+                  <p class="collection-description">
+                    Rich leather accords with warm spices, evoking the timeless elegance of a gentleman's study.
+                  </p>
+                  <p class="collection-count">5 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collection 4 -->
+            <div class="collection-card">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/g37c3a9abea0f71614e74614f0a89244c4bac50e281d18334695c13702073579a95879ce4ce8c54678e27d8139debd8a70ad8c20e80a1b4f009ecd9aa2ab95c04_1280.jpg" alt="Smoky Whiskey">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">Smoky Whiskey</h3>
+                  <p class="collection-description">
+                    Aged barrel notes with smoky undertones, perfect for the discerning whiskey connoisseur.
+                  </p>
+                  <p class="collection-count">4 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collection 5 -->
+            <div class="collection-card">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/g5659291fe9b3bf734148c00728ede866697f61509d8c10a19530315dfa872c1f02e8e06148c640c458f0a54c512b15855cfe2d01280f5e8e580ddfc022f36c50_1280.jpg" alt="Urban Steel">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">Urban Steel</h3>
+                  <p class="collection-description">
+                    Modern, metropolitan scents with metallic notes and fresh undertones for the city dweller.
+                  </p>
+                  <p class="collection-count">7 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collection 6 -->
+            <div class="collection-card">
+              <div class="collection-image">
+                <img src="https://pixabay.com/get/gb56a87a611ec8f3c9a9248a0859af63dfa434830d0eb4ddc9d8be2801a823fab9bcb2fc7dd867befe778821e34afbbb1d6c7b198188abe43901f10d11978af69_1280.jpg" alt="Artisan Reserve">
+              </div>
+              <div class="collection-overlay">
+                <div class="collection-info">
+                  <h3 class="collection-title">Artisan Reserve</h3>
+                  <p class="collection-description">
+                    Limited edition, hand-crafted candles featuring rare and exotic fragrance compositions.
+                  </p>
+                  <p class="collection-count">3 Products</p>
+                  <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section company-info">
+            <div class="footer-logo">
+              <span class="footer-logo-text">IGNITTI</span>
+            </div>
+            <p class="company-description">
+              Luxury candles crafted for the modern man. Elevate your space with sophisticated scents that embody confidence and refinement.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop All</a></li>
+              <li><a href="collections.html">Collections</a></li>
+              <li><a href="irepeat.html">IRepeat Subscription</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h3 class="footer-title">Customer Care</h3>
+            <ul class="footer-links">
+              <li><a href="#">Shipping Information</a></li>
+              <li><a href="#">Returns & Exchanges</a></li>
+              <li><a href="#">Candle Care Guide</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">My Account</a></li>
+              <li><a href="#">Track Your Order</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section newsletter-section">
+            <h3 class="footer-title">Stay Connected</h3>
+            <p class="newsletter-description">
+              Get exclusive access to new releases, special offers, and insider stories.
+            </p>
+            <form class="footer-newsletter-form">
+              <div class="newsletter-form-group">
+                <input type="email" placeholder="Enter your email" required class="newsletter-email-input">
+                <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <div class="copyright">
+              <p>&copy; 2025 Ignitti. All rights reserved.</p>
+            </div>
+            <div class="footer-legal">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Refund Policy</a>
+            </div>
+            <div class="payment-methods">
+              <span class="payment-text">We Accept:</span>
+              <div class="payment-icons">
+                <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                  <rect width="40" height="25" rx="4" fill="#1434CB"/>
+                  <path d="M16.5 8.5h7v8h-7v-8z" fill="#FF5F00"/>
+                  <circle cx="12" cy="12.5" r="4" fill="#EB001B"/>
+                  <circle cx="28" cy="12.5" r="4" fill="#F79E1B"/>
+                </svg>
+                <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                  <rect width="40" height="25" rx="4" fill="#0070BA"/>
+                  <path d="M12 16.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z" fill="white"/>
+                  <path d="M19 16.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z" fill="#85C447"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+
+        if (mobileMenuToggle && mobileNavOverlay) {
+          mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.classList.toggle('active');
+            mobileNavOverlay.style.display = mobileNavOverlay.style.display === 'block' ? 'none' : 'block';
+            document.body.style.overflow = mobileNavOverlay.style.display === 'block' ? 'hidden' : '';
+          });
+        }
+
+        const header = document.querySelector('.site-header');
+        window.addEventListener('scroll', function() {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY > 50) {
+            header.style.background = 'rgba(26, 26, 26, 0.98)';
+            header.style.backdropFilter = 'blur(15px)';
+          } else {
+            header.style.background = 'rgba(26, 26, 26, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
