@@ -22,10 +22,20 @@
         "paragraph_2": "Founded in 2020 by master perfumer Alexander Chen, Ignitti represents a revolution in masculine fragrance. Each candle is meticulously crafted using premium soy wax and complex scent profiles that evoke confidence, luxury, and refinement.",
         "paragraph_3": "From our workshop in Portland, Oregon, we hand-pour every candle with precision and care. Our signature scents include notes of aged whiskey, cedar, leather, tobacco, and exotic spices—creating an olfactory experience that transforms any space into a gentleman's sanctuary."
       }
+    },
+    "best_sellers_yqPgkm": {
+      "type": "best-sellers",
+      "name": "Best Sellers",
+      "settings": {
+        "heading": "Best Sellers",
+        "button_text": "View All Products",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "main",
-    "about_story_nPaFty"
+    "about_story_nPaFty",
+    "best_sellers_yqPgkm"
   ]
 }
