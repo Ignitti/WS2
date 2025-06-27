@@ -12,7 +12,7 @@
       
       {%- if section.settings.description != blank -%}
         <div class="list-collections__description">
-          {{ section.settings.description }}
+          <p>{{ section.settings.description }}</p>
         </div>
       {%- endif -%}
     </div>
@@ -108,7 +108,7 @@
       "label": "Heading"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "description",
       "label": "Description"
     },
