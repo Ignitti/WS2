@@ -1,8 +1,17 @@
 {
   "sections": {
-    "main": {
-      "type": "main-index"
+    "home-hero": {
+      "type": "home-hero"
+    },
+    "brand-intro": {
+      "type": "brand-intro"
+    },
+    "best-sellers": {
+      "type": "best-sellers"
+    },
+    "newsletter-signup": {
+      "type": "newsletter-signup"
     }
   },
-  "order": ["main"]
+  "order": ["home-hero", "brand-intro", "best-sellers", "newsletter-signup"]
 }

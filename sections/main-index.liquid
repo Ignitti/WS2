@@ -1,8 +1,11 @@
-<div class="homepage-sections">
-  {% section 'home-hero' %}
-  {% section 'brand-intro' %}
-  {% section 'best-sellers' %}
-  {% section 'newsletter-signup' %}
+{% comment %}
+  Main index section - content will be loaded through template sections
+{% endcomment %}
+
+<div class="page-width">
+  <div class="index-content">
+    <h1 class="visually-hidden">{{ shop.name }}</h1>
+  </div>
 </div>
 
 <style>
