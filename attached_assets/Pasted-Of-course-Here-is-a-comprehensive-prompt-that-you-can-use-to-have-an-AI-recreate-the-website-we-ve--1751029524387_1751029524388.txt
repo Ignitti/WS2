@@ -1,0 +1,91 @@
+Of course. Here is a comprehensive prompt that you can use to have an AI recreate the website we've designed. This prompt includes all the key details, from the brand vision to the technical Shopify structure, ensuring the final output is as close as possible to what we've built together.
+
+AI Prompt to Generate the Ignitti Website
+You are an expert web designer and Shopify theme developer. Your task is to create a high-end, modern, and luxurious multi-page Shopify theme for a candle company called "Ignitti."
+
+1. Core Project Goal & Brand Identity:
+
+Brand Name: Ignitti
+
+Product: Luxurious, man-oriented candles.
+
+Target Audience: Men (25-55+) who value quality craftsmanship, refined aesthetics, and sophisticated scents.
+
+Brand Essence: The website must feel exclusive, modern, masculine, and trustworthy.
+
+2. Aesthetic & Visual Design:
+
+Overall Feel: High-end, sleek, luxurious, and minimalist yet rich.
+
+Color Palette:
+
+Primary Backgrounds: A very dark charcoal/off-black, enhanced with a subtle texture (like dark denim or concrete) to add depth.
+
+Section Backgrounds: Use deep, muted tones like charcoal grey (#1a1a1a) and deep forest green (#1E3A2B).
+
+Accent Color: A rich, metallic gold (#D4AF37) for buttons, highlights, and key text.
+
+Typography:
+
+Headings: Use 'Montserrat' (or a similar modern, clean sans-serif), styled to be uppercase with letter-spacing.
+
+Body Text: Use 'Montserrat' for clean readability.
+
+Accent Text: Use 'Playfair Display' (or a similar elegant serif) for subtitles and special callouts to add a touch of classic luxury.
+
+Visual Elements:
+
+Employ ample negative space for a clean, uncluttered layout.
+
+Use high-resolution placeholder imagery that evokes a moody, sophisticated, and masculine ambiance.
+
+All cards and containers should have rounded corners.
+
+3. User Experience & Animations:
+
+Animations: Implement smooth, subtle animations. Content sections should gently fade and slide up as the user scrolls into view.
+
+Hover Effects: Interactive elements like product cards and buttons should have refined hover effects (e.g., a slight lift, a subtle glow, or a background transition).
+
+Responsiveness: The design must be fully responsive and look flawless on desktop, tablet, and mobile devices.
+
+4. Page Structure & Menu Items:
+Create a multi-page experience with the following menu items and page content:
+
+Main (Homepage):
+
+A full-screen hero section with a bold heading and a call-to-action button.
+
+A "Brand Intro" section explaining the company's philosophy.
+
+A "Best Sellers" section displaying 3 featured products in a grid.
+
+A "Newsletter Signup" section.
+
+Shop: A full product grid page with filtering options.
+
+Collections: A page to showcase curated collections of products (e.g., "The Executive Collection").
+
+IRepeat: A subscription page featuring three distinct pricing tiers in a card layout (e.g., "The Enthusiast," "The Connoisseur," "The Collector"). The middle tier should be highlighted as "Most Popular."
+
+About Us: A page detailing the brand story, with text alongside a large image.
+
+Contact: A page with a clean, modern contact form.
+
+5. Technical Shopify Implementation (Crucial):
+
+Do not generate a single HTML file. You must structure the output as a standard Shopify theme.
+
+Provide the code for the following essential files:
+
+layout/theme.liquid: The main layout file, including the header, footer, and asset links. Use Liquid objects like {{ content_for_layout }} and {{ 'base.css' | asset_url | stylesheet_tag }}. The navigation menu should be generated dynamically using {% for link in linklists['main-menu'].links %}.
+
+templates/index.json: The JSON template for the homepage.
+
+sections/main-index.liquid: The main homepage section that includes other sections.
+
+sections/home-hero.liquid: The hero section file, which must include a {% schema %} block at the bottom. This schema should allow users to customize the background image, heading, subheading, and button text/link from the Shopify Theme Editor.
+
+assets/base.css: A file containing all the necessary CSS styles.
+
+assets/custom.js: A file containing all the necessary JavaScript for animations and interactivity, compatible with Shopify's architecture.
