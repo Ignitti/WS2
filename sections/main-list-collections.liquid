@@ -18,8 +18,7 @@
     </div>
 
     {%- if collections.size > 0 -%}
-      <div class="collections-grid">
-        <ul class="grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-mobile" role="list">
+        <ul class="collections-grid" role="list">
           {%- for collection in collections limit: section.settings.collections_to_show -%}
             {%- unless collection.handle == 'frontpage' -%}
               <li class="grid__item">
@@ -55,25 +54,21 @@
                       {%- endif -%}
                       
                       <div class="collection-card__overlay">
-                        <div class="collection-card__content">
-                          <h2 class="collection-card__title">{{ collection.title }}</h2>
-                          {%- if section.settings.show_collection_count -%}
-                            <p class="collection-card__count">
-                              {{ collection.products_count }} 
-                              {%- if collection.products_count == 1 -%}
-                                Product
-                              {%- else -%}
-                                Products
-                              {%- endif -%}
-                            </p>
-                          {%- endif -%}
-                          {%- if collection.description != blank -%}
-                            <div class="collection-card__description">
-                              {{ collection.description | strip_html | truncate: 100 }}
-                            </div>
-                          {%- endif -%}
-                        </div>
+                        <a href="{{ collection.url }}" class="btn btn-secondary">View Collection</a>
                       </div>
+                    </div>
+                    <div class="collection-card__info">
+                      <h3 class="collection-card__title">{{ collection.title }}</h3>
+                      {%- if section.settings.show_collection_count -%}
+                        <p class="collection-card__count">
+                          {{ collection.products_count }} 
+                          {%- if collection.products_count == 1 -%}
+                            Product
+                          {%- else -%}
+                            Products
+                          {%- endif -%}
+                        </p>
+                      {%- endif -%}
                     </div>
                   </a>
                 </div>
@@ -81,7 +76,6 @@
             {%- endunless -%}
           {%- endfor -%}
         </ul>
-      </div>
     {%- else -%}
       <div class="collections-empty">
         <div class="empty-state">
@@ -250,55 +244,35 @@
   margin-top: 2rem;
 }
 
-.grid {
+.collections-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-bottom: 3rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.grid--1-col-desktop {
-  grid-template-columns: 1fr;
-}
-
-.grid--2-col-desktop {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid--3-col-desktop {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid--4-col-desktop {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid--5-col-desktop {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-@media screen and (max-width: 749px) {
-  .grid--1-col-mobile {
+@media screen and (max-width: 768px) {
+  .collections-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .grid--2-col-mobile {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .grid {
     gap: 1rem;
   }
 }
 
 .collection-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   height: 100%;
-  transition: transform 0.3s ease;
 }
 
 .collection-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .collection-card__link {
@@ -310,7 +284,7 @@
 
 .collection-card__image {
   position: relative;
-  aspect-ratio: 1;
+  height: 250px;
   overflow: hidden;
   border-radius: 12px;
   background: rgba(30, 58, 43, 0.3);
@@ -324,7 +298,7 @@
 }
 
 .collection-card:hover .collection-card__image img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .collection-card__placeholder {
@@ -344,47 +318,70 @@
 
 .collection-card__overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(26, 26, 26, 0.9));
-  padding: 2rem 1.5rem 1.5rem;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 1.5rem;
 }
 
 .collection-card:hover .collection-card__overlay {
-  transform: translateY(0);
+  opacity: 1;
 }
 
-.collection-card__content {
-  text-align: center;
+.collection-card__info {
+  padding: 1.5rem;
 }
 
 .collection-card__title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #D4AF37;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
 }
 
 .collection-card__count {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  color: #ffffff;
+  color: #D4AF37;
   font-weight: 500;
-  margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-.collection-card__description {
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
   font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
   font-size: 0.9rem;
-  color: #cccccc;
-  line-height: 1.4;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: #D4AF37;
+  color: #1a1a1a;
+  border-color: #D4AF37;
+  transform: translateY(-2px);
 }
 
 .collections-empty {
