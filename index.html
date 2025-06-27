@@ -60,16 +60,24 @@
             </ul>
           </nav>
           
+          <!-- Search Bar (Inline) -->
+          <div class="header-search">
+            <form class="search-form-inline">
+              <input type="search" 
+                     placeholder="Search products..." 
+                     class="search-input-inline"
+                     autocomplete="off">
+              <button type="submit" class="search-submit-inline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+
           <!-- Header Actions -->
           <div class="header-actions">
-            <!-- Search -->
-            <button class="header-action search-toggle" aria-label="Search">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-            </button>
-            
             <!-- Account -->
             <a href="#" class="header-action" aria-label="Account">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -117,24 +125,7 @@
         </div>
       </div>
       
-      <!-- Search Overlay -->
-      <div class="search-overlay">
-        <div class="search-content">
-          <form class="search-form">
-            <input type="search" 
-                   placeholder="Search for products..." 
-                   class="search-input"
-                   autocomplete="off">
-            <button type="submit" class="search-submit">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-            </button>
-          </form>
-          <button class="search-close" aria-label="Close search">×</button>
-        </div>
-      </div>
+
     </header>
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
