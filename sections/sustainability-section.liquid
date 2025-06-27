@@ -1,6 +1,162 @@
+{% comment %}
+  Sustainability & Craftsmanship Section
+{% endcomment %}
+
+<div class="sustainability-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="sustainability-content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="sustainability-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      
+      <div class="sustainability-features">
+        <div class="feature">
+          <div class="feature-icon">🌱</div>
+          <h4>Eco-Conscious</h4>
+          <p>Made with renewable soy wax and cotton wicks for a clean, sustainable burn.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">♻️</div>
+          <h4>Reusable Vessels</h4>
+          <p>Hand-blown glass containers designed for repurposing long after the candle is finished.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h4>Precision Crafted</h4>
+          <p>Each candle is hand-poured in small batches to ensure consistent quality and performance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Sustainability Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Crafted with Purpose",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ]
+}
 {% endschema %}
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+.sustainability-section {
+  background: rgba(26, 26, 26, 0.8);
+}
+
+.sustainability-content {
+  text-align: center;
+}
+
+.sustainability-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #D4AF37;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.sustainability-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: rgba(30, 58, 43, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  background: rgba(30, 58, 43, 0.5);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #D4AF37;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.feature p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .sustainability-heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sustainability-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature {
+    padding: 1.5rem 1rem;
+  }
+}
+</style>
