@@ -22,7 +22,8 @@
       <!-- Navigation -->
       <nav class="header-nav" role="navigation">
         <ul class="nav-list">
-          {% for link in linklists['main-menu'].links %}
+          {% assign main_menu = settings.main_menu | default: 'main-menu' %}
+          {% for link in linklists[main_menu].links %}
             <li class="nav-item">
               <a href="{{ link.url }}" class="nav-link {% if link.active %}active{% endif %}">
                 {{ link.title }}
@@ -87,7 +88,8 @@
   <div class="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <ul class="mobile-nav-list">
-        {% for link in linklists['main-menu'].links %}
+        {% assign main_menu = settings.main_menu | default: 'main-menu' %}
+        {% for link in linklists[main_menu].links %}
           <li class="mobile-nav-item">
             <a href="{{ link.url }}" class="mobile-nav-link">{{ link.title }}</a>
           </li>
