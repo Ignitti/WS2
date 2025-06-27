@@ -9,21 +9,27 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "banner": {
+      "type": "main-collection-banner",
       "settings": {}
     },
-    "collection_grid_4Q6JHy": {
-      "type": "collection-grid",
-      "name": "Collection Grid",
+    "product-grid": {
+      "type": "main-collection-product-grid",
       "settings": {
-        "heading": "Our Collections",
-        "description": "Discover our curated collections of premium candles, each designed for different moods and occasions."
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "columns_mobile": "2"
       }
     }
   },
   "order": [
-    "main",
-    "collection_grid_4Q6JHy"
+    "banner",
+    "product-grid"
   ]
 }
